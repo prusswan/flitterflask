@@ -24,8 +24,7 @@ def login_view():
 def register_view():
     form = RegistrationForm(request.form)
     if form.validate_on_submit():
-        user = User()
-        form.populate_obj(user)
+        user = User(form.name.data, form.email.data, form.password.data)
         db.session.add(user)
         db.session.commit()
         login_user(user)

@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_from_directory
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.heroku import Heroku
 from flask.ext.login import LoginManager
+from flask.ext.bcrypt import Bcrypt
 
 import os
 
@@ -11,6 +12,7 @@ app.config.from_object('config') # load our local config file
 heroku = Heroku(app) # create a heroku config object from our app object
 
 login_manager = LoginManager(app) # create a LoginManager Object from our app object
+bcrypt = Bcrypt(app)
 
 db = SQLAlchemy(app) # create a db (SQLAlchemy) object from our app object
 
