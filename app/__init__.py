@@ -23,6 +23,22 @@ app.register_blueprint(usersModule)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "users.login_view"
 
+# assets bundling
+from flask.ext.assets import Environment, Bundle
+assets = Environment(app)
+css_all = Bundle(
+    'stylesheets/*.css',
+    output='gen/application.css'
+)
+assets.register('css_all',css_all)
+
+js_all = Bundle(
+    'javascripts/main.js',
+    output='gen/application.js'
+)
+assets.register('js_all',js_all)
+
+
 # #register the tracking module blueprint
 # from app.tracking.views import mod as trackingModule
 # app.register_blueprint(trackingModule)

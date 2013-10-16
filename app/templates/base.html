@@ -13,24 +13,10 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://bootswatch.com/cosmo/bootstrap.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-      body { padding-top: 60px; }
 
-      .accordian-toggle a:hover {
-        text-decoration: none !important;
-      }
-      .collapsed .icon-collapse-alt {
-        display: none;
-      }
-
-      .collapsed .icon-expand-alt {
-        display: inline !important;
-      }
-
-      .icon-expand-alt {
-        display: none !important;
-      }
-    </style>
+    {% assets "css_all" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
 
     <!-- SUPPORT FOR IE6-8 OF HTML5 ELEMENTS -->
     <!--[if lt IE 9]>
@@ -40,6 +26,11 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+
+    {% assets "js_all" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
     {% endblock %}
   </head>
 
