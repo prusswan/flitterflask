@@ -28,7 +28,10 @@ class RegistrationForm(Form):
     name = fields.TextField(validators=[validators.required()])
     email = fields.TextField(validators=[validators.Email()])
     password = fields.PasswordField(validators=[validators.required()])
-    confirm_password = fields.PasswordField(validators=[validators.required()])
+    confirm_password = fields.PasswordField(validators=[
+        validators.required(),
+        validators.EqualTo('password', message='Passwords must match')
+    ])
 
     def validate(self):
         if db.session.query(User).filter_by(name=self.name.data).count() > 0:
