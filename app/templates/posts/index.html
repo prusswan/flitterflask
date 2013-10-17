@@ -7,23 +7,22 @@
 <form method="POST" class="form form-horizontal">
   <!-- Form Name -->
   {{ form.csrf_token }}
-  <input class="input-xlarge" id="body" name="body" placeholder="text" type="textarea" value="" maxlength="200" size="100">
+  <textarea class="input-xlarge" id="body" name="body" placeholder="Create new post" value="" maxlength="200" size="100" cols="100"></textarea>
   <button type="submit" id="submit_post" class="btn-small btn-primary ">Submit</button>
 </form>
 {% endif %}
 
 <div class="row">
   {% if posts %}
-  <div class="accordion" id="accordion2">
+  <div class="microposts col-md-8">
     {% for post in posts %}
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <h1>
-          <a class="accordion-toggle collapsed in" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{post.id}}"><i class="icon-expand-alt pull-right"></i><i class="icon-collapse-alt pull-right"></i>{{post.body}}</a>
-        </h1>
-      </div>
+    <hr />
+    <div class="micropost">
+      <span class="content">{{post.body}}</span>
+      <span class="timestamp pull-right">{{ post.created_at.ctime() }}</span>
     </div>
     {% endfor %}
+
   </div>
   {% else %}
   <div>
