@@ -39,9 +39,9 @@ js_all = Bundle(
 assets.register('js_all',js_all)
 
 
-# #register the tracking module blueprint
-# from app.tracking.views import mod as trackingModule
-# app.register_blueprint(trackingModule)
+# register the post module blueprint
+from app.posts.views import mod as postsModule
+app.register_blueprint(postsModule)
 
 #----------------------------------------
 # controllers

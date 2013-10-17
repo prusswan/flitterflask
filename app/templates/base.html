@@ -44,15 +44,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">My Tracker</a>
+        <a class="navbar-brand" href="/">Flitter</a>
         <div class="nav-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/sites">Sites</a></li>
+            <li><a href="#">Posts</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
             {% if current_user.is_authenticated() %}
-            <li class="pull-right"><p style="color:white;" class="navbar-text pull-right">Signed in as {{ current_user.name }} (<a href="/logout">logout?</a>)</p></li>
+            <li class="pull-right"><p class="navbar-text pull-right">Signed in as {{ current_user.name }} (<a href="/logout">logout?</a>)</p></li>
             {% else %}
             <li class="pull-right"><a href="/login">Log In</a></li>
             <li class="pull-right"><a href="/register">Register</a></li>
@@ -82,7 +82,7 @@
 
         {% block footer %}
         <footer class="footer">
-            <p>&copy; My Tracker</p>
+            <p>&copy; Flitter</p>
         </footer>
         {% endblock %}
 
