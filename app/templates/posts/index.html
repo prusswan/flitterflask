@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} - Posts{% endblock %}
+{% block content %}
+{% from "forms/macros.html" import render_field %}
+
+{% if form %}
+<form method="POST" class="form form-horizontal">
+  <!-- Form Name -->
+  {{ form.csrf_token }}
+  <textarea class="input-xlarge" id="body" name="body" placeholder="Create new post" value="" maxlength="200" size="100" cols="100"></textarea>
+  <button type="submit" id="submit_post" class="btn-small btn-primary ">Submit</button>
+</form>
+{% endif %}
+
+<div class="row">
+  {% if posts %}
+  <div class="microposts col-md-8">
+    {% for post in posts %}
+    <hr />
+    <div class="micropost">
+      <span class="content">{{post.body}}</span>
+      <span class="timestamp pull-right">{{ post.created_at.ctime() }}</span>
+    </div>
+    {% endfor %}
+
+  </div>
+  {% else %}
+  <div>
+    <h2>No posts for this user yet.</h2>
+  <div>
+  {% endif %}
+</div>
+<script type="text/javascript">
+$("a[rel=tooltip]").tooltip();
+$("a[rel=popover]").popover({trigger:'hover'});
+</script>
+
+{% endblock %}

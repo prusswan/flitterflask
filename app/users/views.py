@@ -17,7 +17,7 @@ def login_view():
         user = form.get_user()
         login_user(user)
         flash("Logged in successfully.")
-        return redirect(request.args.get("next") or url_for("index"))
+        return redirect("flitter/user/"+user.name or request.args.get("next") or url_for("index"))
     return render_template('users/login.html', form=form)
 
 @mod.route('/register/', methods=('GET', 'POST'))

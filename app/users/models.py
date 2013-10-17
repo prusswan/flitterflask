@@ -1,7 +1,7 @@
 from app.mixins import CRUDMixin
 from flask.ext.login import UserMixin
 from app import db, bcrypt
-# from app.tracking.models import Site
+from app.posts.models import Post
 
 class User(UserMixin, CRUDMixin,  db.Model):
     __tablename__ = 'users_user'
@@ -9,7 +9,8 @@ class User(UserMixin, CRUDMixin,  db.Model):
     name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    # sites = db.relationship('Site', backref='site', lazy='dynamic')
+
+    posts = db.relationship('Post', backref='post', lazy='dynamic')
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name
