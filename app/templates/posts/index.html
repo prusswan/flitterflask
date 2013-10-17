@@ -13,9 +13,9 @@
 {% endif %}
 
 <div class="row">
-  {% if posts %}
+  {% if posts and posts.items %}
   <div class="microposts col-md-8">
-    {% for post in posts %}
+    {% for post in posts.items %}
     <hr />
     <div class="micropost">
       <span class="content">{{post.body}}</span>
@@ -23,6 +23,8 @@
     </div>
     {% endfor %}
 
+    {% if posts.has_prev %}<a href="{{ url_for('posts_view', username=username, page=posts.prev_num) }}"><< Newer posts</a>{% else %}<< Newer posts{% endif %} |
+    {% if posts.has_next %}<a href="{{ url_for('posts_view', username=username, page=posts.next_num) }}">Older posts >></a>{% else %}Older posts >>{% endif %}
   </div>
   {% else %}
   <div>

@@ -10,13 +10,16 @@ from sqlalchemy import desc
 
 mod = Blueprint('posts', __name__)
 
+from config import POSTS_PER_PAGE
+
 @mod.route('/flitter/user/<username>', methods=('GET', 'POST'))
-def posts_view(username=None):
+@app.route('/flitter/user/<username>/<int:page>', methods = ['GET', 'POST'])
+def posts_view(username=None, page=1):
     user = db.session.query(User).filter_by(name=username).first()
     if user is None:
         return render_template('404.html'), 404
 
-    posts = user.posts.order_by(desc(Post.created_at)).all()
+    posts = user.posts.order_by(desc(Post.created_at)).paginate(page, POSTS_PER_PAGE, False)
 
     form = None
     if current_user == user:
@@ -30,4 +33,4 @@ def posts_view(username=None):
             db.session.commit()
             return redirect('/flitter/user/' + username)
 
-    return render_template('posts/index.html', form=form, posts=posts)
+    return render_template('posts/index.html', form=form, posts=posts, username=user.name)

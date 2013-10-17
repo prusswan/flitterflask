@@ -19,3 +19,6 @@ RECAPTCHA_OPTIONS = {'theme': 'white'}
 DATABASE = 'test.db'
 DATABASE_PATH = os.path.join(_basedir, DATABASE)
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
+
+# pagination
+POSTS_PER_PAGE = 10
