@@ -9,7 +9,7 @@ class LoginForm(Form):
     name = fields.TextField(validators=[validators.required()])
     password = fields.PasswordField(validators=[validators.required()])
 
-    def validate(self):
+    def validate_login(self, field):
         user = self.get_user()
 
         if user is None:
@@ -33,7 +33,7 @@ class RegistrationForm(Form):
         validators.EqualTo('password', message='Passwords must match')
     ])
 
-    def validate(self):
+    def validate_login(self, field):
         if db.session.query(User).filter_by(name=self.name.data).count() > 0:
             raise validators.ValidationError('Duplicate username')
 
